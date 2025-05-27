@@ -7,6 +7,7 @@
 ---
 
 ## Tier 1 – Browsing & Basic Auth (**26 pts**)
+
 _Scope: anonymous catalogue browsing, account creation & login_
 
 <details>
@@ -14,6 +15,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 ### Frontend
 
 #### Products
+
 <details>
 
 - [ ] Display a grid of **all products** (`name`, `image`, `price`, `rating`) on `/products`.
@@ -23,6 +25,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 </details>
 
 #### Auth & Nav
+
 <details>
 
 - [✔] Global **Navbar** with links to Home, Products, Cart, Login/Register.
@@ -34,6 +37,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 ### Backend
 
 #### Seed
+
 <details>
 
 - [✔] `script/seed.js` syncs & seeds: _10 sample products, 2 demo users_.
@@ -41,6 +45,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 </details>
 
 #### Models & Routes
+
 <details>
 
 - [✔] **Product** model: `name*`, `description`, `price*`, `imageUrl (default)`, `inventoryQty*`.
@@ -59,6 +64,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 <details>
 
 ### Frontend
+
 <details>
 
 #### Single Product
@@ -73,6 +79,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 </details>
 
 ### Backend
+
 <details>
 
 #### Cart API
@@ -96,6 +103,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 <details>
 
 ### Frontend
+
 <details>
 
 - [ ] **Place Order** button on Cart page creates an order and redirects to `/orders/:orderId`.
@@ -104,6 +112,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 </details>
 
 ### Backend
+
 <details>
 
 - [ ] **Order** model: `status ('created' | 'paid' | 'cancelled')`, `total`.
@@ -121,6 +130,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 <details>
 
 ### Frontend
+
 <details>
 
 - [ ] Route `/admin` shows tables for **Products**, **Users**, and **Orders**.
@@ -129,6 +139,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 </details>
 
 ### Backend
+
 <details>
 
 - [ ] `POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id` (no role enforcement).
@@ -145,6 +156,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 <details>
 
 ### Frontend
+
 <details>
 
 - [ ] Client‑side **form validation** with helpful error messages.
@@ -155,6 +167,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 </details>
 
 ### Backend
+
 <details>
 
 - [ ] `GET /api/products` accepts `?page` & `?limit` for pagination.
@@ -170,10 +183,7 @@ _Scope: anonymous catalogue browsing, account creation & login_
 
 - [ ] **Stripe Checkout & Webhooks** – secure payment flow, inventory decrement.
 - [ ] **Role‑based Authorization** – restrict `/admin` and admin routes to users with `role: 'admin'`.
-- [ ] Social login (Google OAuth).
-- [ ] Email order receipts via SendGrid.
-- [ ] Sentry error monitoring.
-- [ ] Server‑side rendering with `vite-plugin-ssr` or Next.js.
+- TBD
 
 ---
 
