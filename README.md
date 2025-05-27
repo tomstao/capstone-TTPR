@@ -87,9 +87,6 @@ $ cd <project‑dir>
 # 2. Install root, client & server deps (npm workspaces)
 $ npm install
 
-# 3. Configure environment vars
-$ cp .env.example .env   # then edit DB creds & JWT_SECRET
-
 # 4. Seed database
 $ npm run seed           # runs script/seed.js
 
