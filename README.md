@@ -127,7 +127,7 @@ npm run dev    # Frontend on http://localhost:5173, API on http://localhost:3000
 ## Contributing
 
 1. Fork the repo & create a feature branch.
-2. Commit using [Conventional Commits](https://linkedin.com/in/...).
+2. Commit using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 3. Push and open a PR against `main`.
 
 ---
@@ -140,7 +140,7 @@ Distributed under the **MIT** License. See `LICENSE` for more information.
 
 ## Authors
 
-| Name                 | LinkedIn                                                   | GitHub                                    |
-| -------------------- | ---------------------------------------------------------- | ----------------------------------------- |
-| **Lan Hikari**       | [https://linkedin.com/in/...](https://linkedin.com/in/...) | [https://github.com/](https://github.com) |
-| _Add your teammates_ |                                                            |                                           |
+| Name                 | LinkedIn                                | GitHub                       |
+| -------------------- | --------------------------------------- | ---------------------------- |
+| **Lan Hikari**       | [LinkedIn](https://linkedin.com/in/...) | [Github](https://github.com) |
+| _Add your teammates_ |                                         |                              |
