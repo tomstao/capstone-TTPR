@@ -1,64 +1,146 @@
-# CHAT APP
+# E‑commerce Starter – PERN • Vite/React
 
-The goal is to create an application similar to Slack. However, it is important to remember to make this project YOURS!
+Welcome to your capstone e‑commerce project! This starter repo gives you everything you need to build a full-stack online store using the PERN stack: PostgreSQL, Express, React (via Vite), and Node.js.
 
-### Requirements
+This project is designed to help you skip the boilerplate and dive straight into feature development. It includes JWT-based auth, seed data, and a clean file structure.
 
-Looking at Slack will give you a good idea of the kind of functionality you can add but this project is open ended and you can build whatever kind of chat application you would like.
+> 💡 Replace the project title and customize the design to make it your own storefront!
 
-If we were to build something like Slack, we'd probably want to consider the following.
+---
 
-- Users should be able to log in
-- Users should be able to create channels
-- Users should be able to write messages in a channel
-- Users should be able to send messages directly to other users
+## Table of Contents
 
-These are just examples of some core features but you should decide the specifics of the application you want to build.
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Folder Structure](#folder-structure)
+4. [Getting Started](#getting-started)
+5. [Scripts](#scripts)
+6. [Contributing](#contributing)
+7. [License](#license)
+8. [Authors](#authors)
 
-## Navigating the codebase
+---
 
-This codebase consists of a frontend and backend application that can each be run seperately. See `package.json` in the respective folders to see how to start the servers.
-Hint: run `npm run dev`.
+## Features
 
-### Backend
+- 🛒 **Product Catalogue** – browse all products and view detailed pages.
+- ➕ **Cart Management** – add, increment, decrement, and remove items.
+- 🔐 **JWT Auth** – register / login with secure password hashing.
+- 💾 **Persisted Cart** – cart survives page refresh and syncs after login.
+- 📦 **Seed Data** – 10 demo products, 2 demo users seeded automatically.
+- ⚙️ **Admin CRUD** – create, update & delete products, manage users & orders (Tier 4 task).
 
-#### Starting the server locally
+> See `REQUIREMENTS.md` for the full milestone checklist.
 
-In a new terminal window
+---
+
+## Tech Stack
+
+| Layer     | Tech                                                         |
+| --------- | ------------------------------------------------------------ |
+| Frontend  | React 18 (Vite), React Router 6, Redux Toolkit / Context API |
+| Styling   | CSS Modules (Tailwind optional), ESLint + Prettier           |
+| Backend   | Express 5, Sequelize 7, PostgreSQL 15, JWT (jsonwebtoken)    |
+| Dev Tools | Vite, Nodemon, dotenv                                        |
+
+---
+
+## Folder Structure
+
+```
+.
+├── backend/
+│   ├── src/
+│   │   ├── db/
+│   │   │   ├── config/              # Sequelize config
+│   │   │   │   └── config.json
+│   │   │   ├── migrations/          # Sequelize migrations
+│   │   │   │   └── YYYYMMDD-create-user.js
+│   │   │   ├── models/              # Sequelize models
+│   │   │   │   └── user.js
+│   │   │   └── index.js             # DB setup and associations
+│   │   ├── routes/                  # Express routes
+│   │   │   ├── index.js
+│   │   │   └── users.js
+│   │   └── app.js                   # Express app instance
+│   ├── package.json
+│   └── package-lock.json
+├── frontend/
+│   ├── public/                      # Static assets
+│   │   └── vite.svg
+│   ├── src/                         # React app
+│   │   ├── assets/
+│   │   │   └── react.svg
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   ├── package.json
+│   └── package-lock.json
+├── package.json                    # Root-level npm workspaces config
+├── package-lock.json
+├── README.md
+└── REQUIREMENTS.md                 # Milestones & tasks
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js ≥ 18** – [download](https://nodejs.org/)
+- **PostgreSQL ≥ 14** – [installation guide](https://www.postgresql.org/download/)
+
+### Installation
 
 ```bash
-cd backend;
-npm install;
-npm run dev;
+# Step 1: Clone the repository
+git clone <your‑repo‑url>
+cd <project‑directory>
+
+# Step 2: Install dependencies (npm workspaces will handle both frontend/backend)
+npm install
+
+# Step 3: Seed the database
+npm run seed
+
+# Step 4: Start development servers
+npm run dev    # Frontend on http://localhost:5173, API on http://localhost:3000
+
 ```
 
-#### Database Overview
+### Scripts
 
-The database connection is established in `src/db/index.js`. Here, the connection is made based on the configurations defined in `src/db/config/config.json` and the current `NODE_ENV` environment variable.
+| Command            | Description                              |
+| ------------------ | ---------------------------------------- |
+| `npm run dev`      | Starts frontend and backend concurrently |
+| `npm run seed`     | Syncs and seeds the PostgreSQL database  |
+| `npm run migrate`  | Runs Sequelize migrations                |
+| `npm run rollback` | Reverts last Sequelize migration         |
 
-Models are defined in `src/db/models`. This folder is automatically parsed by `src/db/index.js` and every model defined gets added to the `db` variable that is exported by `src/db/index.js`. For example to access the `User` model you can do the following.
+---
 
-```
-const db = require("path/to/db");
-const User = db["User"];
+## Contributing
 
-User.findAll();
-```
+1. Fork the repo & create a feature branch.
+2. Commit using [Conventional Commits](https://linkedin.com/in/...).
+3. Push and open a PR against `main`.
 
-#### Running database migrations
+---
 
-This is done using sequelize-cli. See https://sequelize.org/docs/v6/other-topics/migrations/ for more information.
-To run the migrations use `npm run migrate`.
-To rollback (or "undo") use `npm run rollback`.
+## License
 
-### Frontend
+Distributed under the **MIT** License. See `LICENSE` for more information.
 
-#### Starting the server locally
+---
 
-In a new terminal window
+## Authors
 
-```bash
-cd frontend;
-npm install;
-npm run dev;
-```
+| Name                 | LinkedIn                                                   | GitHub                                    |
+| -------------------- | ---------------------------------------------------------- | ----------------------------------------- |
+| **Lan Hikari**       | [https://linkedin.com/in/...](https://linkedin.com/in/...) | [https://github.com/](https://github.com) |
+| _Add your teammates_ |                                                            |                                           |
