@@ -209,7 +209,7 @@ function Home() {
         <Slider {...sliderSettings}>
           {featuredProducts.map((product) => (
             <div key={product.id}>
-              <Card>
+              <Card className="carousel-card">
                 <CardMedia
                   component="img"
                   height="400"

@@ -228,14 +228,18 @@ function CategoryNav() {
         bgcolor: "background.paper",
         position: "relative",
         zIndex: 1100,
+        height: "56px", // Fixed height to prevent layout shifts
+        overflow: "visible", // Ensure dropdowns can extend beyond container
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: "relative" }}>
         <Box
           sx={{
             display: "flex",
             gap: 4,
             py: 1,
+            height: "56px", // Match parent height
+            alignItems: "center", // Center buttons vertically
           }}
         >
           {[
@@ -256,7 +260,12 @@ function CategoryNav() {
               key={key}
               onMouseEnter={(e) => handleMouseEnter(e, key)}
               onMouseLeave={() => handleMouseLeave(key)}
-              sx={{ position: "relative" }}
+              sx={{
+                position: "relative",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
               <Button
                 component={Link}
@@ -266,27 +275,19 @@ function CategoryNav() {
                   "&:hover": { color: "primary.main" },
                   transition: "color 0.2s ease",
                   textDecoration: "none",
+                  height: "fit-content",
+                  minHeight: "36px", // Consistent button height
+                  display: "flex",
+                  alignItems: "center",
                 }}
                 endIcon={<KeyboardArrowDownIcon />}
               >
                 {label}
               </Button>
-              <Popper
-                open={Boolean(anchorEls[key])}
-                anchorEl={anchorEls[key]}
-                placement="bottom-start"
-                sx={{ zIndex: 1200 }}
-                modifiers={[
-                  {
-                    name: "offset",
-                    options: {
-                      offset: [0, 8],
-                    },
-                  },
-                ]}
-              >
-                <Paper
-                  elevation={8}
+
+              {/* Dropdown positioned absolutely to avoid any layout impact */}
+              {anchorEls[key] && (
+                <Box
                   onMouseEnter={() => {
                     if (timeoutRefs.current[key]) {
                       clearTimeout(timeoutRefs.current[key]);
@@ -294,15 +295,31 @@ function CategoryNav() {
                   }}
                   onMouseLeave={() => handleMouseLeave(key)}
                   sx={{
-                    overflow: "hidden",
-                    borderRadius: 2,
-                    border: "1px solid",
-                    borderColor: "divider",
+                    position: "absolute",
+                    top: "100%",
+                    left: 0,
+                    zIndex: 1300,
+                    mt: 1,
+                    // Ensure this doesn't affect any layout
+                    pointerEvents: "auto",
                   }}
                 >
-                  {renderDropdownContent(key, categoryData[key])}
-                </Paper>
-              </Popper>
+                  <Paper
+                    elevation={8}
+                    sx={{
+                      overflow: "hidden",
+                      borderRadius: 2,
+                      border: "1px solid",
+                      borderColor: "divider",
+                      // Ensure no layout impact
+                      position: "relative",
+                      transform: "translateZ(0)", // Force hardware acceleration
+                    }}
+                  >
+                    {renderDropdownContent(key, categoryData[key])}
+                  </Paper>
+                </Box>
+              )}
             </Box>
           ))}
         </Box>

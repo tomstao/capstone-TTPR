@@ -34,14 +34,23 @@ main {
   color: white;
 }
 
-/* Card hover effects */
-.MuiCard-root {
+/* Card hover effects - exclude carousel cards to prevent layout shifts */
+.MuiCard-root:not(.carousel-card) {
   transition: transform 0.2s ease-in-out;
 }
 
-.MuiCard-root:hover {
+.MuiCard-root:not(.carousel-card):hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel cards should not have transform hover effects */
+.carousel-card {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.carousel-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer link hover effects */
