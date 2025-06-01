@@ -1,51 +1,61 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material";
+import Navbar from "./components/Navbar";
+import CategoryNav from "./components/CategoryNav";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./components/Home";
+import ProductDetails from "./components/ProductDetails";
+import NewArrivals from "./components/NewArrivals";
+import Exclusive from "./components/Exclusive";
+import BestSellers from "./components/BestSellers";
+import Series from "./components/Series";
+import PlasticModels from "./components/PlasticModels";
+import "./App.css";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#4CAF50",
+    },
+    secondary: {
+      main: "#2196F3",
+    },
+  },
+  typography: {
+    h6: {
+      fontWeight: 600,
+      fontSize: "1rem",
+      marginBottom: "1rem",
+    },
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        await fetch("http://localhost:3000/users/")
-          .then(async (response) => {
-            const json = await response.json()
-            console.log(json)
-            // response.json
-          })
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    fetchData()
-  }, [])
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <ScrollToTop />
+          <Navbar />
+          <CategoryNav />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/new-arrivals" element={<NewArrivals />} />
+              <Route path="/plastic-models" element={<PlasticModels />} />
+              <Route path="/exclusive" element={<Exclusive />} />
+              <Route path="/best-sellers" element={<BestSellers />} />
+              <Route path="/series" element={<Series />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
