@@ -1,145 +1,145 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {
-  Container,
-  Grid,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  Box,
-  Rating,
-  Chip,
+    Container,
+    Grid,
+    Typography,
+    Card,
+    CardMedia,
+    CardContent,
+    Box,
+    Rating,
+    Chip,
 } from "@mui/material";
 
 // This would come from your API in a real application
 const bestSellersData = [
-  {
-    id: 1,
-    title: "VECTOR Frame Type-A",
-    image: "https://via.placeholder.com/300x300",
-    price: 199.99,
-    rating: 4.8,
-    reviews: 256,
-    soldCount: 1200,
-  },
-  {
-    id: 2,
-    title: "ARPEGGIO Limited Ver.",
-    image: "https://via.placeholder.com/300x300",
-    price: 299.99,
-    rating: 4.9,
-    reviews: 189,
-    soldCount: 950,
-  },
-  {
-    id: 3,
-    title: "FRAME ARMS GIRL Custom",
-    image: "https://via.placeholder.com/300x300",
-    price: 159.99,
-    rating: 4.7,
-    reviews: 312,
-    soldCount: 1500,
-  },
-  // Add more items as needed
+    {
+        id: 1,
+        title: "VECTOR Frame Type-A",
+        image: "https://via.placeholder.com/300x300",
+        price: 199.99,
+        rating: 4.8,
+        reviews: 256,
+        soldCount: 1200,
+    },
+    {
+        id: 2,
+        title: "ARPEGGIO Limited Ver.",
+        image: "https://via.placeholder.com/300x300",
+        price: 299.99,
+        rating: 4.9,
+        reviews: 189,
+        soldCount: 950,
+    },
+    {
+        id: 3,
+        title: "FRAME ARMS GIRL Custom",
+        image: "https://via.placeholder.com/300x300",
+        price: 159.99,
+        rating: 4.7,
+        reviews: 312,
+        soldCount: 1500,
+    },
+    // Add more items as needed
 ];
 
 function BestSellers() {
-  return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h4" component="h1" gutterBottom sx={{ mb: 4 }}>
-        Best Sellers
-      </Typography>
+    return (
+        <Container maxWidth="lg" sx={{py: 8}}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{mb: 4}}>
+                Best Sellers
+            </Typography>
 
-      <Grid container spacing={4}>
-        {bestSellersData.map((product) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-            <Card
-              component={Link}
-              to={`/product/${product.id}`}
-              sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                textDecoration: "none",
-                transition: "transform 0.2s",
-                "&:hover": {
-                  transform: "translateY(-4px)",
-                },
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="300"
-                image={product.image}
-                alt={product.title}
-                sx={{ objectFit: "cover" }}
-              />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography
-                  gutterBottom
-                  variant="h6"
-                  component="div"
-                  sx={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                  }}
-                >
-                  {product.title}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  color="primary"
-                  sx={{ fontWeight: "bold", mb: 1 }}
-                >
-                  ${product.price}
-                </Typography>
-                <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                  <Rating
-                    value={product.rating}
-                    precision={0.1}
-                    readOnly
-                    size="small"
-                  />
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ ml: 1 }}
-                  >
-                    ({product.rating})
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography variant="body2" color="text.secondary">
-                    {product.reviews} reviews
-                  </Typography>
-                  <Chip
-                    label={`${product.soldCount}+ sold`}
-                    size="small"
-                    color="primary"
-                    sx={{
-                      backgroundColor: "rgba(76, 175, 80, 0.1)",
-                      color: "primary.main",
-                      fontWeight: "bold",
-                    }}
-                  />
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  );
+            <Grid container spacing={4}>
+                {bestSellersData.map((product) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+                        <Card
+                            component={Link}
+                            to={`/product/${product.id}`}
+                            sx={{
+                                height: "100%",
+                                display: "flex",
+                                flexDirection: "column",
+                                textDecoration: "none",
+                                transition: "transform 0.2s",
+                                "&:hover": {
+                                    transform: "translateY(-4px)",
+                                },
+                            }}
+                        >
+                            <CardMedia
+                                component="img"
+                                height="300"
+                                image={product.image}
+                                alt={product.title}
+                                sx={{objectFit: "cover"}}
+                            />
+                            <CardContent sx={{flexGrow: 1}}>
+                                <Typography
+                                    gutterBottom
+                                    variant="h6"
+                                    component="div"
+                                    sx={{
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                        display: "-webkit-box",
+                                        WebkitLineClamp: 2,
+                                        WebkitBoxOrient: "vertical",
+                                    }}
+                                >
+                                    {product.title}
+                                </Typography>
+                                <Typography
+                                    variant="h6"
+                                    color="primary"
+                                    sx={{fontWeight: "bold", mb: 1}}
+                                >
+                                    ${product.price}
+                                </Typography>
+                                <Box sx={{display: "flex", alignItems: "center", mb: 1}}>
+                                    <Rating
+                                        value={product.rating}
+                                        precision={0.1}
+                                        readOnly
+                                        size="small"
+                                    />
+                                    <Typography
+                                        variant="body2"
+                                        color="text.secondary"
+                                        sx={{ml: 1}}
+                                    >
+                                        ({product.rating})
+                                    </Typography>
+                                </Box>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <Typography variant="body2" color="text.secondary">
+                                        {product.reviews} reviews
+                                    </Typography>
+                                    <Chip
+                                        label={`${product.soldCount}+ sold`}
+                                        size="small"
+                                        color="primary"
+                                        sx={{
+                                            backgroundColor: "rgba(76, 175, 80, 0.1)",
+                                            color: "primary.main",
+                                            fontWeight: "bold",
+                                        }}
+                                    />
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
+    );
 }
 
 export default BestSellers;
