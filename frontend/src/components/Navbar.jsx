@@ -1,14 +1,15 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
   Typography,
   InputBase,
-  // Button,
+  Button,
   Box,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { AccountCircle } from "@mui/icons-material";
 import NavButton from "./NavButton.jsx";
 
 const Search = styled("div")(({ theme }) => ({
@@ -34,14 +35,13 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const navButtons = [
-  {text: "New Arrivals", endpoint:"/new-arrivals" },
-  {text:"Exclusive", endpoint:"/exclusive"},
-    {text:"Best Sellers", endpoint:"/best-sellers"},
-  {text:"Cart", endpoint:"/cart"},
-]
+  { text: "New Arrivals", endpoint: "/new-arrivals" },
+  { text: "Exclusive", endpoint: "/exclusive" },
+  { text: "Best Sellers", endpoint: "/best-sellers" },
+  { text: "Cart", endpoint: "/cart" },
+];
 
 function Navbar() {
-
   // function NavButton({ children, endpoint }) {
   //   const location = useLocation();
   //   const isActive = location.pathname === endpoint;
@@ -90,10 +90,42 @@ function Navbar() {
         {/*<Button color="inherit" component={Link} to="/cart">*/}
         {/*  Cart*/}
         {/*</Button>*/}
-        {navButtons.map(({ text,endpoint }) => (
-            <NavButton children={text} endpoint={endpoint}/>
+        {navButtons.map(({ text, endpoint }) => (
+          <NavButton key={text} children={text} endpoint={endpoint} />
         ))}
 
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, ml: 2 }}>
+          <AccountCircle sx={{ mr: 1 }} />
+          <Button
+            color="inherit"
+            component={Link}
+            to="/login"
+            sx={{
+              fontSize: "0.875rem",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+              },
+            }}
+          >
+            Login
+          </Button>
+          <Typography sx={{ color: "rgba(255, 255, 255, 0.7)" }}>|</Typography>
+          <Button
+            color="inherit"
+            component={Link}
+            to="/register"
+            sx={{
+              fontSize: "0.875rem",
+              textTransform: "none",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+              },
+            }}
+          >
+            Sign Up
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );

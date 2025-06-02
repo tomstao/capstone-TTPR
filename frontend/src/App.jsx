@@ -12,8 +12,9 @@ import Exclusive from "./components/Exclusive";
 import BestSellers from "./components/BestSellers";
 import Series from "./components/Series";
 import PlasticModels from "./components/PlasticModels";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import "./App.css";
-
 
 const theme = createTheme({
   palette: {
@@ -50,6 +51,8 @@ function App() {
               <Route path="/exclusive" element={<Exclusive />} />
               <Route path="/best-sellers" element={<BestSellers />} />
               <Route path="/series" element={<Series />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </main>
           <Footer />
