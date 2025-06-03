@@ -11,6 +11,7 @@ import {
 import {styled} from "@mui/material/styles";
 import {AccountCircle} from "@mui/icons-material";
 import NavButton from "./NavButton.jsx";
+import {useAuth} from "../context/AuthContext.jsx";
 
 const Search = styled("div")(({theme}) => ({
     position: "relative",
@@ -56,7 +57,7 @@ function Navbar() {
     //       </Button>
     //   );
     // }
-
+    const {isLoggedIn, logout} = useAuth();
     return (
         <AppBar position="static">
             <Toolbar>
@@ -95,7 +96,27 @@ function Navbar() {
                 ))}
 
                 <Box sx={{display: "flex", alignItems: "center", gap: 1, ml: 2}}>
+                    {isLoggedIn ? (
+                    <>
                     <AccountCircle sx={{mr: 1}}/>
+                    <Button
+                        color="inherit"
+                        component={Link}
+                        to="/login"
+                        onClick={logout}
+                        sx={{
+                            fontSize: "0.875rem",
+                            textTransform: "none",
+                            "&:hover": {
+                                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                            },
+                        }}
+                    >
+                        Logout
+                    </Button>
+                    </>) :
+
+                        (<>
                     <Button
                         color="inherit"
                         component={Link}
@@ -125,6 +146,7 @@ function Navbar() {
                     >
                         Sign Up
                     </Button>
+                    </>)}
                 </Box>
             </Toolbar>
         </AppBar>

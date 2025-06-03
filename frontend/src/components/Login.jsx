@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext.jsx";
 import {
     Container,
     Paper,
@@ -15,6 +16,7 @@ import {
 import {Visibility, VisibilityOff, Email, Lock} from "@mui/icons-material";
 
 function Login() {
+    const {login} = useAuth();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -75,6 +77,7 @@ function Login() {
             await new Promise((resolve) => setTimeout(resolve, 1000));
 
             // On success, redirect to home or dashboard
+            login();
             navigate("/");
         } catch (err) {
             console.error("Login error:", err);
