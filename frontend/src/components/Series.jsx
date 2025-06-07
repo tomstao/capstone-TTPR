@@ -8,78 +8,12 @@ import {
     CardMedia,
     CardContent,
 } from "@mui/material";
-
-// This would come from your API in a real application
-const seriesData = [
-    {
-        id: 1,
-        name: "BISHOUJO series",
-        image: "/series-logos/bishoujo.png",
-        link: "/series/bishoujo",
-        description:
-            "Beautiful girl statues based on illustrations by Shunya Yamashita",
-    },
-    {
-        id: 2,
-        name: "ZOIDS",
-        image: "/series-logos/zoids.png",
-        link: "/series/zoids",
-        description:
-            "Mechanical animal-shaped model kits from the popular franchise",
-    },
-    {
-        id: 3,
-        name: "ARTFX J",
-        image: "/series-logos/artfx-j.png",
-        link: "/series/artfx-j",
-        description: "High-quality scale figures from Japanese anime and games",
-    },
-    {
-        id: 4,
-        name: "ARCANADEA",
-        image: "/series-logos/arcanadea.png",
-        link: "/series/arcanadea",
-        description: "Original mecha model kit series with unique designs",
-    },
-    {
-        id: 5,
-        name: "MEGAMI DEVICE",
-        image: "/series-logos/megami-device.png",
-        link: "/series/megami-device",
-        description: "Customizable female robot model kit series",
-    },
-    {
-        id: 6,
-        name: "FRAME ARMS GIRL",
-        image: "/series-logos/frame-arms-girl.png",
-        link: "/series/frame-arms-girl",
-        description: "Anthropomorphized versions of Frame Arms mecha",
-    },
-    {
-        id: 7,
-        name: "SOUSAI SHOJO TEIEN",
-        image: "/series-logos/sousai-shojo-teien.png",
-        link: "/series/sousai-shojo-teien",
-        description: "Customizable school girl model kit series",
-    },
-    {
-        id: 8,
-        name: "M.S.G",
-        image: "/series-logos/msg.png",
-        link: "/series/msg",
-        description: "Modeling Support Goods - weapon and armor add-on parts",
-    },
-    {
-        id: 9,
-        name: "HEXA GEAR",
-        image: "/series-logos/hexa-gear.png",
-        link: "/series/hexa-gear",
-        description:
-            "Original mechanical model kit series with unique hex-based designs",
-    },
-];
+import {allSeries} from "../data/products";
 
 function Series() {
+    // Get series data from centralized data source
+    const seriesData = allSeries;
+
     return (
         <Container maxWidth="lg" sx={{py: 8}}>
             <Typography variant="h4" component="h1" gutterBottom sx={{mb: 4}}>

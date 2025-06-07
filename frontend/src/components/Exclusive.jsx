@@ -10,38 +10,12 @@ import {
     Box,
     Chip,
 } from "@mui/material";
-
-// This would come from your API in a real application
-const exclusiveData = [
-    {
-        id: 1,
-        title: "ARTFX J Nicholas D. Wolfwood TRIGUN STAMPEDE",
-        image: "https://via.placeholder.com/300x300",
-        price: 219.99,
-        isNew: true,
-        hasBonus: true,
-        isExclusive: true,
-    },
-    {
-        id: 2,
-        title: "PUNI☆MOFU YUKI TU",
-        image: "https://via.placeholder.com/300x300",
-        price: 59.99,
-        isNew: true,
-        hasBonus: true,
-    },
-    {
-        id: 3,
-        title: "MACH SUPERION & Weapon Set",
-        image: "https://via.placeholder.com/300x300",
-        price: 89.99,
-        isNew: true,
-        hasBonus: true,
-    },
-    // Add more items as needed
-];
+import {getExclusiveItems} from "../data/products";
 
 function Exclusive() {
+    // Get products from centralized data source
+    const exclusiveData = getExclusiveItems();
+
     return (
         <Container maxWidth="lg" sx={{py: 8}}>
             <Typography variant="h4" component="h1" gutterBottom sx={{mb: 4}}>
@@ -104,6 +78,15 @@ function Exclusive() {
                                             }}
                                         />
                                     )}
+                                    <Chip
+                                        label={product.category}
+                                        size="small"
+                                        variant="outlined"
+                                        sx={{
+                                            fontSize: "0.7rem",
+                                            color: "text.secondary",
+                                        }}
+                                    />
                                 </Box>
                                 <Typography
                                     gutterBottom

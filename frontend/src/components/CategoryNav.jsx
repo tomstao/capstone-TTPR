@@ -13,89 +13,19 @@ import {
     CardContent,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import {
+    getNewArrivals,
+    getPlasticModels,
+    getExclusiveItems,
+    allSeries,
+} from "../data/products";
 
 // Sample data - in a real app, this would come from your API
 const categoryData = {
-    figures: [
-        {
-            id: 1,
-            title: 'V-THOR Air Assault "Thunderstruck"',
-            image: "https://via.placeholder.com/300x300",
-            price: 97.99,
-        },
-        {
-            id: 2,
-            title: "Daitaku Helios",
-            image: "https://via.placeholder.com/300x300",
-            price: 199.99,
-        },
-        {
-            id: 3,
-            title: "Ume Hanami-The Rolling Riceball",
-            image: "https://via.placeholder.com/300x300",
-            price: 244.99,
-        },
-    ],
-    plasticModels: [
-        {
-            id: 4,
-            title: "MACH SUPERION & Weapon Set",
-            image: "https://via.placeholder.com/300x300",
-            price: 89.99,
-        },
-        {
-            id: 5,
-            title: "FRAME ARMS GIRL Custom",
-            image: "https://via.placeholder.com/300x300",
-            price: 159.99,
-        },
-        {
-            id: 6,
-            title: "VECTOR Frame Type-A",
-            image: "https://via.placeholder.com/300x300",
-            price: 199.99,
-        },
-    ],
-    exclusive: [
-        {
-            id: 7,
-            title: "ARTFX J Nicholas D. Wolfwood",
-            image: "https://via.placeholder.com/300x300",
-            price: 219.99,
-        },
-        {
-            id: 8,
-            title: "PUNI☆MOFU YUKI TU",
-            image: "https://via.placeholder.com/300x300",
-            price: 59.99,
-        },
-        {
-            id: 9,
-            title: "Rosalinde",
-            image: "https://via.placeholder.com/300x300",
-            price: 184.99,
-        },
-    ],
-    series: [
-        {
-            id: 10,
-            name: "BISHOUJO series",
-            image: "/series-logos/bishoujo.png",
-            link: "/series/bishoujo",
-        },
-        {
-            id: 11,
-            name: "FRAME ARMS GIRL",
-            image: "/series-logos/frame-arms-girl.png",
-            link: "/series/frame-arms-girl",
-        },
-        {
-            id: 12,
-            name: "MEGAMI DEVICE",
-            image: "/series-logos/megami-device.png",
-            link: "/series/megami-device",
-        },
-    ],
+    figures: getNewArrivals(3), // Get first 3 new arrivals for figures dropdown
+    plasticModels: getPlasticModels(3), // Get first 3 plastic models
+    exclusive: getExclusiveItems(3), // Get first 3 exclusive items
+    series: allSeries.slice(0, 3), // Get first 3 series
 };
 
 function CategoryNav() {
@@ -200,7 +130,13 @@ function CategoryNav() {
                     <Box sx={{display: "flex", justifyContent: "center", mt: 1}}>
                         <Button
                             component={Link}
-                            to={`/${category}`}
+                            to={`/${
+                                category === "figures"
+                                    ? "new-arrivals"
+                                    : category === "plasticModels"
+                                        ? "plastic-models"
+                                        : category
+                            }`}
                             variant="outlined"
                             size="small"
                             sx={{
@@ -212,7 +148,12 @@ function CategoryNav() {
                                 },
                             }}
                         >
-                            View All {category.charAt(0).toUpperCase() + category.slice(1)}
+                            View All{" "}
+                            {category === "figures"
+                                ? "Figures"
+                                : category === "plasticModels"
+                                    ? "Plastic Models"
+                                    : category.charAt(0).toUpperCase() + category.slice(1)}
                         </Button>
                     </Box>
                 </Grid>

@@ -11,40 +11,12 @@ import {
     Rating,
     Chip,
 } from "@mui/material";
-
-// This would come from your API in a real application
-const bestSellersData = [
-    {
-        id: 1,
-        title: "VECTOR Frame Type-A",
-        image: "https://via.placeholder.com/300x300",
-        price: 199.99,
-        rating: 4.8,
-        reviews: 256,
-        soldCount: 1200,
-    },
-    {
-        id: 2,
-        title: "ARPEGGIO Limited Ver.",
-        image: "https://via.placeholder.com/300x300",
-        price: 299.99,
-        rating: 4.9,
-        reviews: 189,
-        soldCount: 950,
-    },
-    {
-        id: 3,
-        title: "FRAME ARMS GIRL Custom",
-        image: "https://via.placeholder.com/300x300",
-        price: 159.99,
-        rating: 4.7,
-        reviews: 312,
-        soldCount: 1500,
-    },
-    // Add more items as needed
-];
+import {getBestSellers} from "../data/products";
 
 function BestSellers() {
+    // Get products from centralized data source
+    const bestSellersData = getBestSellers();
+
     return (
         <Container maxWidth="lg" sx={{py: 8}}>
             <Typography variant="h4" component="h1" gutterBottom sx={{mb: 4}}>
@@ -117,6 +89,7 @@ function BestSellers() {
                                         display: "flex",
                                         justifyContent: "space-between",
                                         alignItems: "center",
+                                        mb: 1,
                                     }}
                                 >
                                     <Typography variant="body2" color="text.secondary">
@@ -133,6 +106,15 @@ function BestSellers() {
                                         }}
                                     />
                                 </Box>
+                                <Chip
+                                    label={product.category}
+                                    size="small"
+                                    variant="outlined"
+                                    sx={{
+                                        fontSize: "0.7rem",
+                                        color: "text.secondary",
+                                    }}
+                                />
                             </CardContent>
                         </Card>
                     </Grid>

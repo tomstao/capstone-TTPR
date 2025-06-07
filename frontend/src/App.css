@@ -1,170 +1,222 @@
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-  min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
 
 .App {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Main content should grow to push footer to bottom */
 main {
-  flex: 1;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 16px;
+    flex: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 16px;
 }
 
 /* Carousel customization */
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: auto;
+    min-height: 1px;
+}
+
+.slick-slide.slick-active {
+    display: block;
+}
+
 .slick-dots {
-  bottom: 25px;
+    bottom: 25px;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.slick-dots li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.slick-dots li button {
+    border: none;
+    background: transparent;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .slick-dots li button:before {
-  color: #666;
-  font-size: 12px;
-  opacity: 0.7;
+    color: #666;
+    font-size: 12px;
+    opacity: 0.7;
+    content: "•";
 }
 
 .slick-dots li.slick-active button:before {
-  color: #4caf50;
-  opacity: 1;
+    color: #4caf50;
+    opacity: 1;
 }
 
 .slick-dots li button:hover:before {
-  color: #4caf50;
-  opacity: 0.8;
+    color: #4caf50;
+    opacity: 0.8;
 }
 
 /* Carousel arrow styling */
 .slick-prev,
 .slick-next {
-  z-index: 1;
-  width: 40px;
-  height: 40px;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
 }
 
 .slick-prev:before,
 .slick-next:before {
-  font-size: 30px;
-  color: #333 !important;
-  opacity: 0.8;
-  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    font-size: 30px;
+    color: #333 !important;
+    opacity: 0.8;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
 }
 
 .slick-prev:hover:before,
 .slick-next:hover:before {
-  color: #4caf50 !important;
-  opacity: 1;
+    color: #4caf50 !important;
+    opacity: 1;
 }
 
 .slick-prev {
-  left: 10px;
+    left: 10px;
 }
 
 .slick-next {
-  right: 10px;
+    right: 10px;
 }
 
 /* Card hover effects - exclude carousel cards to prevent layout shifts */
 .MuiCard-root:not(.carousel-card) {
-  transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 
 .MuiCard-root:not(.carousel-card):hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Carousel cards should not have transform hover effects */
 .carousel-card {
-  transition: box-shadow 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
 .carousel-card:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer link hover effects */
 .footer-link {
-  transition: color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  color: #4caf50;
+    color: #4caf50;
 }
 
 /* Newsletter input focus styles */
 .newsletter-input .MuiOutlinedInput-root:focus-within {
-  border-color: #4caf50;
+    border-color: #4caf50;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Make container components centered and responsive */
 .MuiContainer-root {
-  max-width: 1280px !important;
-  padding-left: 16px !important;
-  padding-right: 16px !important;
+    max-width: 1280px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
 }
 
 /* Responsive adjustments */
 @media (min-width: 600px) {
-  main {
-    padding: 0 24px;
-  }
+    main {
+        padding: 0 24px;
+    }
 
-  .MuiContainer-root {
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-  }
+    .MuiContainer-root {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
 }
 
 @media (min-width: 960px) {
-  main {
-    padding: 0 32px;
-  }
+    main {
+        padding: 0 32px;
+    }
 
-  .MuiContainer-root {
-    padding-left: 32px !important;
-    padding-right: 32px !important;
-  }
+    .MuiContainer-root {
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+    }
 }

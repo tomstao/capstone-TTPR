@@ -10,37 +10,12 @@ import {
     Box,
     Chip,
 } from "@mui/material";
-
-// This would come from your API in a real application
-const newArrivalsData = [
-    {
-        id: 1,
-        title: 'V-THOR Air Assault "Thunderstruck"',
-        image: "https://via.placeholder.com/300x300",
-        price: 97.99,
-        isNew: true,
-        hasBonus: true,
-    },
-    {
-        id: 2,
-        title: "Daitaku Helios",
-        image: "https://via.placeholder.com/300x300",
-        price: 199.99,
-        isNew: true,
-        hasBonus: true,
-    },
-    {
-        id: 3,
-        title: "Ume Hanami-The Rolling Riceball",
-        image: "https://via.placeholder.com/300x300",
-        price: 244.99,
-        isNew: true,
-        hasBonus: true,
-    },
-    // Add more items as needed
-];
+import {getNewArrivals} from "../data/products";
 
 function NewArrivals() {
+    // Get products from centralized data source
+    const newArrivalsData = getNewArrivals();
+
     return (
         <Container maxWidth="lg" sx={{py: 8}}>
             <Typography variant="h4" component="h1" gutterBottom sx={{mb: 4}}>
@@ -93,6 +68,15 @@ function NewArrivals() {
                                             }}
                                         />
                                     )}
+                                    <Chip
+                                        label={product.category}
+                                        size="small"
+                                        variant="outlined"
+                                        sx={{
+                                            fontSize: "0.7rem",
+                                            color: "text.secondary",
+                                        }}
+                                    />
                                 </Box>
                                 <Typography
                                     gutterBottom

@@ -1,29 +1,49 @@
 import React from "react";
-import {useParams} from "react-router-dom";
-import {Container, Grid, Typography, Button, Box, Paper} from "@mui/material";
-
-// Mock product data - in a real app, this would come from an API
-const mockProduct = {
-    id: 1,
-    title: "Limited Edition Mecha",
-    price: 199.99,
-    description:
-        "High-quality limited edition mecha figure with exceptional detail and articulation. Perfect for collectors and enthusiasts.",
-    image: "https://via.placeholder.com/600x600",
-    specifications: [
-        "Height: 30cm",
-        "Material: PVC & ABS",
-        "Weight: 800g",
-        "Release Date: 2024",
-        "Manufacturer: Top Figure Makers",
-    ],
-};
+import {useParams, useNavigate} from "react-router-dom";
+import {
+    Container,
+    Grid,
+    Typography,
+    Button,
+    Box,
+    Paper,
+    Chip,
+} from "@mui/material";
+import {useCart} from "../context/CartContext";
+import {getProductById} from "../data/products";
 
 function ProductDetails() {
     const {id} = useParams();
+    const navigate = useNavigate();
+    const {addToCart} = useCart();
 
-    // In a real app, you would fetch the product data based on the ID
-    const product = mockProduct;
+    // Get product from centralized data source
+    const product = getProductById(id);
+
+    // Handle case where product is not found
+    if (!product) {
+        return (
+            <Container sx={{py: 4}}>
+                <Typography variant="h4" align="center">
+                    Product not found
+                </Typography>
+                <Typography variant="body1" align="center" sx={{mt: 2}}>
+                    The product you're looking for doesn't exist.
+                </Typography>
+            </Container>
+        );
+    }
+
+    const handleAddToCart = () => {
+        addToCart(product, 1);
+        // You can add a toast notification here later
+        alert(`${product.title} added to cart!`);
+    };
+
+    const handleBuyNow = () => {
+        addToCart(product, 1);
+        navigate("/checkout");
+    };
 
     return (
         <Container sx={{py: 4}}>
@@ -39,6 +59,37 @@ function ProductDetails() {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
+                    <Box sx={{display: "flex", gap: 1, mb: 2}}>
+                        <Chip label={product.category} color="primary" variant="outlined"/>
+                        {product.isNew && (
+                            <Chip
+                                label="New"
+                                sx={{
+                                    backgroundColor: "primary.main",
+                                    color: "white",
+                                }}
+                            />
+                        )}
+                        {product.isExclusive && (
+                            <Chip
+                                label="Exclusive"
+                                sx={{
+                                    backgroundColor: "#ff4081",
+                                    color: "white",
+                                }}
+                            />
+                        )}
+                        {product.hasBonus && (
+                            <Chip
+                                label="Bonus Item"
+                                sx={{
+                                    backgroundColor: "#ffd700",
+                                    color: "black",
+                                }}
+                            />
+                        )}
+                    </Box>
+
                     <Typography variant="h4" gutterBottom>
                         {product.title}
                     </Typography>
@@ -47,30 +98,51 @@ function ProductDetails() {
                         ${product.price}
                     </Typography>
 
-                    <Typography variant="body1" paragraph>
+                    <Typography variant="body1" paragraph sx={{mt: 3}}>
                         {product.description}
                     </Typography>
 
-                    <Box sx={{my: 3}}>
-                        <Typography variant="h6" gutterBottom>
-                            Specifications:
-                        </Typography>
-                        {product.specifications.map((spec, index) => (
-                            <Typography key={index} variant="body1" sx={{mb: 1}}>
-                                • {spec}
+                    {product.series && (
+                        <Box sx={{my: 2}}>
+                            <Typography variant="h6" gutterBottom>
+                                Series: {product.series}
                             </Typography>
-                        ))}
-                    </Box>
+                        </Box>
+                    )}
 
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        sx={{mt: 2}}
-                        onClick={() => alert("Added to cart!")}
-                    >
-                        Add to Cart
-                    </Button>
+                    {product.rating && (
+                        <Box sx={{my: 2}}>
+                            <Typography variant="body1">
+                                Rating: {product.rating}/5 ({product.reviews} reviews)
+                            </Typography>
+                            {product.soldCount && (
+                                <Typography variant="body2" color="text.secondary">
+                                    {product.soldCount}+ sold
+                                </Typography>
+                            )}
+                        </Box>
+                    )}
+
+                    <Box sx={{display: "flex", gap: 2, mt: 3}}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            onClick={handleAddToCart}
+                            sx={{flex: 1}}
+                        >
+                            Add to Cart
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            size="large"
+                            onClick={handleBuyNow}
+                            sx={{flex: 1}}
+                        >
+                            Buy Now
+                        </Button>
+                    </Box>
                 </Grid>
             </Grid>
         </Container>
