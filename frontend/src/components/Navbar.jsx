@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {
@@ -15,6 +15,7 @@ import {styled} from "@mui/material/styles";
 import {AccountCircle} from "@mui/icons-material";
 import NavButton from "./NavButton.jsx";
 import Cart from "./Cart.jsx";
+import UserPanel from "./UserPanel.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
 import {useCart} from "../context/CartContext.jsx";
 
@@ -49,6 +50,11 @@ const navButtons = [
 function Navbar() {
     const {isLoggedIn, logout} = useAuth();
     const {getTotalItems, isCartOpen, toggleCart} = useCart();
+    const [isUserPanelOpen, setIsUserPanelOpen] = useState(false);
+
+    const handleUserPanelToggle = () => {
+        setIsUserPanelOpen(!isUserPanelOpen);
+    };
 
     return (
         <>
@@ -95,11 +101,19 @@ function Navbar() {
                     <Box sx={{display: "flex", alignItems: "center", gap: 1, ml: 2}}>
                         {isLoggedIn ? (
                             <>
-                                <AccountCircle sx={{mr: 1}}/>
+                                <IconButton
+                                    color="inherit"
+                                    onClick={handleUserPanelToggle}
+                                    sx={{
+                                        "&:hover": {
+                                            backgroundColor: "rgba(255, 255, 255, 0.1)",
+                                        },
+                                    }}
+                                >
+                                    <AccountCircle/>
+                                </IconButton>
                                 <Button
                                     color="inherit"
-                                    component={Link}
-                                    to="/login"
                                     onClick={logout}
                                     sx={{
                                         fontSize: "0.875rem",
@@ -153,6 +167,11 @@ function Navbar() {
 
             {/* Cart Drawer */}
             <Cart open={isCartOpen} onClose={toggleCart}/>
+
+            {/* User Panel Drawer */}
+            {isLoggedIn && (
+                <UserPanel open={isUserPanelOpen} onClose={handleUserPanelToggle}/>
+            )}
         </>
     );
 }
