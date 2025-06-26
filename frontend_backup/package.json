@@ -1,8 +1,9 @@
 {
-  "name": "mocktest",
+  "name": "ttpr_chat",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http:localhost:3000",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,18 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@iconify-icons/simple-icons": "^1.2.74",
-    "@iconify/react": "^6.0.0",
-    "@mui/icons-material": "^7.1.0",
-    "@mui/material": "^7.1.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^7.6.1",
-    "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
